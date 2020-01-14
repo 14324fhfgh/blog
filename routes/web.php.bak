@@ -1,0 +1,44 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+//闭包路由
+Route::get('hello', function () { 
+    return 'Hello, Welcome to LaravelAcademy.org'; 
+});
+//控制器方法路由
+Route::get('/aa','Indexcontroller@index');
+//路由试图
+Route::view('/bb','hello',['name'=>'张三']);
+
+//Route::view('/login','login');
+//支持多个的match any
+//Route::get('/login','Indexcontroller@login');
+//Route::post('/dologin','Indexcontroller@dologin');
+//必填路由
+// Route::get('/goods/{id}',function ($id){
+//     echo $id;
+// });
+
+
+//Route::get('/goods/{id}','Indexcontroller@goods');
+
+Route::get('/goods/{id}/{name?}','Indexcontroller@getgoods')->where('id','\id+');
+
+
+
+Route::get('/create','Brandcontroller@create');
+Route::post('/store','Brandcontroller@store');
+Route::get('/brand','Brandcontroller@index');
